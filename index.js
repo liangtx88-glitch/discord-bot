@@ -10,11 +10,8 @@ const client = new Client({
   partials: ["CHANNEL"]
 });
 
-// ====== SET THIS TO YOUR MODMAIL CATEGORY ID ======
-const MODMAIL_CATEGORY_ID = "YOUR_CATEGORY_ID_HERE";
-// ===================================================
+const MODMAIL_CATEGORY_ID = "1445770293846081789";
 
-// ===== Bot Ready & Status =====
 client.on("ready", () => {
   console.log(`Bot logged in as ${client.user.tag}`);
 
@@ -22,23 +19,20 @@ client.on("ready", () => {
     status: "online", // online | idle | dnd | invisible
     activities: [
       {
-        name: "supporting the server ❤️",
-        type: 3 // Watching
+        name: "Powered by RBLX HUB",
+        type: 0 
       }
     ]
   });
 });
 
-// ===== Message Handler (Ping + ModMail) =====
 client.on("messageCreate", async message => {
   if (message.author.bot) return;
 
-  // ----- Ping command -----
   if (message.content === "!ping") {
     message.reply("Pong! Bot is online 24/7 🚀");
   }
 
-  // ----- ModMail Staff Replies -----
   if (message.guild && message.channel.parentId === MODMAIL_CATEGORY_ID) {
     const userId = message.channel.topic;
     const user = await client.users.fetch(userId).catch(() => null);
@@ -47,7 +41,6 @@ client.on("messageCreate", async message => {
     return user.send(`📩 **Staff:** ${message.content}`);
   }
 
-  // ----- User DMs (ModMail) -----
   if (message.channel.type === 1) { // DM
     const guild = client.guilds.cache.first();
     if (!guild) return;
@@ -82,5 +75,4 @@ client.on("messageCreate", async message => {
   }
 });
 
-// ===== Login =====
 client.login(process.env.TOKEN);

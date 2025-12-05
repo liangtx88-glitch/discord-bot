@@ -10,6 +10,16 @@ const client = new Client({
 
 client.on("ready", () => {
   console.log(`Bot logged in as ${client.user.tag}`);
+
+  client.user.setPresence({
+    status: "online",
+    activities: [
+      {
+        name: "with you ❤️",
+        type: 3
+      }
+    ]
+  });
 });
 
 client.on("messageCreate", msg => {
@@ -20,3 +30,4 @@ client.on("messageCreate", msg => {
 });
 
 client.login(process.env.TOKEN);
+

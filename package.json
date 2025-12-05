@@ -1,5 +1,5 @@
 {
-  "name": "discord-bot",
+  "name": "modmail-bot",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,4 +9,3 @@
     "discord.js": "^14.14.1"
   }
 }
-
